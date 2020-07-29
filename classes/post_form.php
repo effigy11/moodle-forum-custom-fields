@@ -119,7 +119,12 @@ class mod_forum_post_form extends moodleform {
         $mform->addElement('editor', 'message', get_string('message', 'forum'), null, self::editor_options($modcontext, (empty($post->id) ? null : $post->id)));
         $mform->setType('message', PARAM_RAW);
         $mform->addRule('message', get_string('required'), 'required', null, 'client');
-
+        
+        // Add custom fields to the form.
+        $handler = mod_forum\customfield\forum_handler::create();
+        $handler->set_parent_context($categorycontext); // For course handler only.
+        $handler->instance_form_definition($mform, empty($course->id) ? 0 : $course->id);
+        
         if (!$inpagereply) {
             $manageactivities = has_capability('moodle/course:manageactivities', $coursecontext);
 
@@ -320,12 +325,7 @@ class mod_forum_post_form extends moodleform {
         $mform->addElement('hidden', 'reply');
         $mform->setType('reply', PARAM_INT);
         
-        
-        // Add custom fields to the form.
-        $handler = mod_forum\customfield\forum_handler::create();
-        $handler->set_parent_context($categorycontext); // For course handler only.
-        $handler->instance_form_definition($mform, empty($course->id) ? 0 : $course->id);
-        
+         
     }
 
     /**
