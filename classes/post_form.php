@@ -97,7 +97,7 @@ class mod_forum_post_form extends moodleform {
         $inpagereply       = $this->_customdata['inpagereply'] ?? false;
         
         print("<pre>". print_r( $this, true ) ."</pre>");
-
+        
         if (!$inpagereply) {
             // Fill in the data depending on page params later using set_data.
             $mform->addElement('header', 'general', '');
@@ -121,9 +121,20 @@ class mod_forum_post_form extends moodleform {
         $mform->setType('message', PARAM_RAW);
         $mform->addRule('message', get_string('required'), 'required', null, 'client');
         
+        $systemcontext   = context_system::instance();
+        $categorycontext = context_coursecat::instance($category->id);
+
+        if (!empty($course->id)) {
+            $coursecontext = context_course::instance($course->id);
+            $context = $coursecontext;
+        } else {
+            $coursecontext = null;
+            $context = $categorycontext;
+        }
+        
         // Add custom fields to the form.
         $handler = mod_forum\customfield\forum_handler::create();
-        $handler->set_parent_context($post->id); // For course handler only.
+        $handler->set_parent_context($categorycontext); // For course handler only.
         $handler->instance_form_definition($mform, empty($post->id) ? 0 : $post->id);
         
         if (!$inpagereply) {
