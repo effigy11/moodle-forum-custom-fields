@@ -766,3 +766,14 @@ $string['cannotdeletediscussioninsinglediscussion'] = 'You cannot delete the fir
 $string['inpagereplysubject'] = 'Re: {$a}';
 $string['overviewnumpostssince'] = '{$a} posts since last login';
 $string['overviewnumunread'] = '{$a} total unread';
+
+// Custom Fields.
+$string['generalform_custom'] = 'Forum Custom Fields';
+$string['customfield_islocked'] = 'Locked';
+$string['customfield_islocked_help'] = 'If the field is locked, only users with the capability to change locked custom fields (by default users with the default role of manager only) will be able to change it in the course settings.';
+$string['customfield_notvisible'] = 'Nobody';
+$string['customfield_visibility'] = 'Visible to';
+$string['customfield_visibility_help'] = 'This setting determines who can view the custom field name and value in the list of courses or in the available custom field filter of the Dashboard.';
+$string['customfield_visibletoall'] = 'Everyone';
+$string['customfield_visibletoteachers'] = 'Teachers';
+$string['customfieldsettings'] = 'Common course custom fields settings';
