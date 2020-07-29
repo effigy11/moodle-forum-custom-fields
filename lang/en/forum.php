@@ -768,7 +768,7 @@ $string['overviewnumpostssince'] = '{$a} posts since last login';
 $string['overviewnumunread'] = '{$a} total unread';
 
 // Custom Fields.
-$string['generalform_custom'] = 'Forum Custom Fields';
+$string['forum_customfield'] = 'Forum Custom Fields';
 $string['customfield_islocked'] = 'Locked';
 $string['customfield_islocked_help'] = 'If the field is locked, only users with the capability to change locked custom fields (by default users with the default role of manager only) will be able to change it in the course settings.';
 $string['customfield_notvisible'] = 'Nobody';
