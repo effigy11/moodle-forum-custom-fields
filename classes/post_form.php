@@ -319,6 +319,13 @@ class mod_forum_post_form extends moodleform {
 
         $mform->addElement('hidden', 'reply');
         $mform->setType('reply', PARAM_INT);
+        
+        
+        // Add custom fields to the form.
+        $handler = mod_forum\customfield\forum_handler::create();
+        $handler->set_parent_context($categorycontext); // For course handler only.
+        $handler->instance_form_definition($mform, empty($course->id) ? 0 : $course->id);
+        
     }
 
     /**
@@ -339,6 +346,11 @@ class mod_forum_post_form extends moodleform {
         if (empty($data['subject'])) {
             $errors['subject'] = get_string('erroremptysubject', 'forum');
         }
+        
+        // Add the custom fields validation.
+        $handler = mod_forum\customfield\forum_handler::create();
+        $errors  = array_merge($errors, $handler->instance_form_validation($data, $files));
+        
         return $errors;
     }
 }
