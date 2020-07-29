@@ -23,7 +23,7 @@
 require_once('../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
 
-admin_externalpage_setup('forum_customfield');
+admin_externalpage_setup('course_customfield');
 
 $output = $PAGE->get_renderer('core_customfield');
 $handler = mod_forum\customfield\course_handler::create();
