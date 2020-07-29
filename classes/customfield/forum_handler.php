@@ -252,7 +252,7 @@ class forum_handler extends \core_customfield\handler {
         require_once($CFG->libdir.'/adminlib.php');
 
         $title = parent::setup_edit_page($field);
-        admin_externalpage_setup('forum_customfield');
+        admin_externalpage_setup('course_customfield');
         $PAGE->navbar->add($title);
         return $title;
     }
