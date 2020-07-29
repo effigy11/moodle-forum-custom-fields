@@ -123,7 +123,7 @@ class mod_forum_post_form extends moodleform {
         
         // Add custom fields to the form.
         $handler = mod_forum\customfield\forum_handler::create();
-        $handler->set_parent_context($categorycontext); // For course handler only.
+        $handler->set_parent_context($post->id); // For course handler only.
         $handler->instance_form_definition($mform, empty($post->id) ? 0 : $post->id);
         
         if (!$inpagereply) {
