@@ -84,18 +84,19 @@ class mod_forum_post_form extends moodleform {
 
         $mform =& $this->_form;
 
-        $course = $this->_customdata['course'];
-        $cm = $this->_customdata['cm'];
-        $coursecontext = $this->_customdata['coursecontext'];
-        $modcontext = $this->_customdata['modcontext'];
-        $forum = $this->_customdata['forum'];
-        $post = $this->_customdata['post'];
-        $subscribe = $this->_customdata['subscribe'];
-        $edit = $this->_customdata['edit'];
-        $thresholdwarning = $this->_customdata['thresholdwarning'];
-        $canreplyprivately = array_key_exists('canreplyprivately', $this->_customdata) ?
-            $this->_customdata['canreplyprivately'] : false;
-        $inpagereply = $this->_customdata['inpagereply'] ?? false;
+        $course            = $this->_customdata['course'];
+        $cm                = $this->_customdata['cm'];
+        $coursecontext     = $this->_customdata['coursecontext'];
+        $modcontext        = $this->_customdata['modcontext'];
+        $forum             = $this->_customdata['forum'];
+        $post              = $this->_customdata['post'];
+        $subscribe         = $this->_customdata['subscribe'];
+        $edit              = $this->_customdata['edit'];
+        $thresholdwarning  = $this->_customdata['thresholdwarning'];
+        $canreplyprivately = array_key_exists('canreplyprivately', $this->_customdata) ? $this->_customdata['canreplyprivately'] : false;
+        $inpagereply       = $this->_customdata['inpagereply'] ?? false;
+        
+        print("<pre>". print_r( $this, true ) ."</pre>");
 
         if (!$inpagereply) {
             // Fill in the data depending on page params later using set_data.
@@ -123,7 +124,7 @@ class mod_forum_post_form extends moodleform {
         // Add custom fields to the form.
         $handler = mod_forum\customfield\forum_handler::create();
         $handler->set_parent_context($categorycontext); // For course handler only.
-        $handler->instance_form_definition($mform, empty($course->id) ? 0 : $course->id);
+        $handler->instance_form_definition($mform, empty($post->id) ? 0 : $post->id);
         
         if (!$inpagereply) {
             $manageactivities = has_capability('moodle/course:manageactivities', $coursecontext);
